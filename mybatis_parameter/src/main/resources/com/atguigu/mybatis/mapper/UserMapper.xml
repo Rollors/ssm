@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.mybatis.mapper.UserMapper">
+    <select id="getUserByUserName" resultType="User">
+<!--        ${}字符串拼接，#{}占位符赋值-->
+<!--        select * from t_user where username = '${username}'-->
+        select * from t_user where username = #{}
+    </select>
+</mapper>
