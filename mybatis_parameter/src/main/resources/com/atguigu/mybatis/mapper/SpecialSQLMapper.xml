@@ -9,4 +9,21 @@
 <!--        select * from t_user where username like concat('%',#{mohu},'%')-->
         select * from t_user where username like "%"#{mohu}"%"
     </select>
+
+    <delete id="deleteMoreUser">
+<!--        delete from t_user where id in(5,6)正确，-->
+<!--        如果是in(#{ids})=in('5,6')字符串错误，因此可以用${ids}-->
+        delete from t_user where id in(${ids});
+    </delete>
+
+    <select id="getUserList" resultType="User">
+<!--        不能用#{}，问题同上，只能用${}-->
+        select * from ${tableName}
+    </select>
+
+<!--    useGeneratedKeys表示当前添加功能使用自增的主键-->
+<!--    keyProperty将添加数据的自增主键为实体类型的参数的属性赋值，id为自增主键名-->
+    <insert id="insertUser" useGeneratedKeys="true" keyProperty="id">
+        insert into t_user values(null,#{username},#{password},#{age},#{gender},#{email})
+    </insert>
 </mapper>
