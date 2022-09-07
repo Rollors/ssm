@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.atguigu.mybatis.mapper.EmpMapper">
+    <!--自定义映射-->
+    <resultMap id="empResult" type="Emp">
+        <id column="emp_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="gender" property="gender"></result>
+    </resultMap>
+    <select id="getEmpByEmpId" resultMap="empResult">
+        <!--
+        用别名来解决字段名和属性名不一致的问题
+            1、resultType,为查询字段设置别名：select emp_id empId,emp_name empName,age,gender from t_emp where emp_id = #{empId}
+            2、resultType,当字段符合MySQL的要求使用_，而属性符合java的要求使用驼峰
+                此时，可以在mybatis核心配置文件中settings标签中设置全局配置，可自动将下划线映射为驼峰：emp_id-empId
+                select * from t_emp where emp_id = #{empId}
+            3、使用resultMap自定义映射处理
+        -->
+        select * from t_emp where emp_id = #{empId}
+    </select>
+</mapper>
