@@ -13,8 +13,12 @@
     -->
 
     <properties resource="jdbc.properties"/>
+    <settings>
+        <!--将下划线映射为驼峰-->
+        <setting  name="mapUnderscoreToCamelCase" value="true" />
+    </settings>
     <typeAliases>
-        <package name=""/>
+        <package name="com.atguigu.mybatis.pojo"/>
     </typeAliases>
 
     <environments default="development">
@@ -40,6 +44,6 @@
     </environments>
 
     <mappers>
-        <package name=""/>
+        <package name="com.atguigu.mybatis.mapper"/>
     </mappers>
 </configuration>
