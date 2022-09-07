@@ -31,4 +31,27 @@
         -->
         select * from t_emp where emp_id = #{empId}
     </select>
+    <!--
+        处理多对一的映射关系：
+        1、级联方式处理
+        -->
+
+    <resultMap id="empAndDeptResultMap" type="Emp">
+        <id column="emp_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="gender" property="gender"></result>
+        <result column="dept_id" property="dept.deptId"></result>
+        <result column="dept_Name" property="dept.deptName"></result>
+    </resultMap>
+
+    <select id="getEmpAndDeptByEmpId" resultMap="empAndDeptResultMap">
+        <!--        t_emp.*,t_dept.*为解决出现emp_id,age,gender dept_id,dept_id,dept_name-->
+        select
+        t_emp.*,t_dept.*
+        from t_emp
+        left join t_dept
+        on t_emp.dept_id = t_dept.dept_id
+        where t_emp.emp_id = #{empId}
+    </select>
 </mapper>

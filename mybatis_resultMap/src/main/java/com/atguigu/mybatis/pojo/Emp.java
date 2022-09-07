@@ -9,6 +9,8 @@ public class Emp {
     private Integer age;
 
     private String gender;
+    //多对一是对象，一对多是集合
+    private Dept dept;
 
     public Emp(){
 
@@ -53,7 +55,14 @@ public class Emp {
         this.gender = gender;
     }
 
-    // alt+insert生成toString()
+    public Dept getDept() {
+        return dept;
+    }
+
+    public void setDept(Dept dept) {
+        this.dept = dept;
+    }
+
     @Override
     public String toString() {
         return "Emp{" +
@@ -61,6 +70,7 @@ public class Emp {
                 ", empName='" + empName + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
+                ", dept=" + dept +
                 '}';
     }
 }

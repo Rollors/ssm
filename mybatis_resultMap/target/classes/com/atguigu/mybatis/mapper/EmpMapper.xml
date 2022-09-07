@@ -4,7 +4,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.atguigu.mybatis.mapper.EmpMapper">
-    <!--自定义映射-->
+    <!--
+    自定义映射
+    id:唯一标识
+    type:处理映射关系的实体类的类型
+    常用标签：
+    id：处理主键和实体类属性名映射关系
+    result:处理普通字段和实体类属性名映射关系
+    column:sql中的某个字段
+    property：实体类属性的属性名，
+    -->
     <resultMap id="empResult" type="Emp">
         <id column="emp_id" property="empId"></id>
         <result column="emp_name" property="empName"></result>
@@ -21,5 +30,28 @@
             3、使用resultMap自定义映射处理
         -->
         select * from t_emp where emp_id = #{empId}
+    </select>
+    <!--
+        处理多对一的映射关系：
+        1、级联方式处理
+        -->
+
+    <resultMap id="empAndDeptResultMap" type="Emp">
+        <id column="emp_id" property="empId"></id>
+        <result column="emp_name" property="empName"></result>
+        <result column="age" property="age"></result>
+        <result column="gender" property="gender"></result>
+        <result column="dept_id" property="dept.deptId"></result>
+        <result column="dept_Name" property="dept.deptName"></result>
+    </resultMap>
+
+    <select id="getEmpAndDeptByEmpId" resultMap="empAndDeptResultMap">
+        <!--        t_emp.*,t_dept.*为解决出现emp_id,age,gender dept_id,dept_id,dept_name-->
+        select
+        t_emp.*,t_dept.*
+        from t_emp
+        left join t_dept
+        on t_emp.dept_id = t_dept.dept_id
+        where t_emp.emp_id = #{empId}
     </select>
 </mapper>
