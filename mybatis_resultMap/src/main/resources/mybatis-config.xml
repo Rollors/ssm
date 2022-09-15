@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-
+    <!--全局配置-->
     <!--
         MyBatis核心配置文件中的标签必须要按照指定的顺序配置：
         properties?,settings?,typeAliases?,typeHandlers?,
@@ -16,6 +16,10 @@
     <settings>
         <!--将下划线映射为驼峰-->
         <setting  name="mapUnderscoreToCamelCase" value="true" />
+        <!--开启延迟加载-->
+        <setting name="lazyLoadingEnabled" value="true" />
+        <!--false为按需加载，true为全部加载-->
+        <setting name="aggressiveLazyLoading" value="false" />
     </settings>
     <typeAliases>
         <package name="com.atguigu.mybatis.pojo"/>

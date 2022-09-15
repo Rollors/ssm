@@ -67,6 +67,11 @@
         on t_emp.dept_id = t_dept.dept_id
         where t_emp.emp_id = #{empId}
     </select>
+    <!--
+        property:设置需要处理映射关系的属性的属性名
+        select:设置分步查询的sql的唯一标识
+        column:将查询的某个字段设置分步查询的sql条件
+        -->
 
     <resultMap id="empAndDeptByStepResultMap" type="Emp">
         <id column="emp_id" property="empId" />

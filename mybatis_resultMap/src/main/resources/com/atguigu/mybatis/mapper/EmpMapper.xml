@@ -59,7 +59,7 @@
     </resultMap>
 
     <select id="getEmpAndDeptByEmpId" resultMap="empAndDeptResultMap">
-        <!--        t_emp.*,t_dept.*为解决出现emp_id,age,gender dept_id,dept_id,dept_name-->
+        <!--t_emp.*,t_dept.*为解决出现emp_id,age,gender dept_id,dept_id,dept_name-->
         select
         t_emp.*,t_dept.*
         from t_emp
@@ -71,6 +71,7 @@
         property:设置需要处理映射关系的属性的属性名
         select:设置分步查询的sql的唯一标识
         column:将查询的某个字段设置分步查询的sql条件
+        fetchType:全局配置延迟加载时，可以设置当前分步查询是否使用延迟加载，eager立即加载|lazy延迟加载
         -->
 
     <resultMap id="empAndDeptByStepResultMap" type="Emp">
@@ -78,7 +79,7 @@
         <result column="emp_name" property="empName" />
         <result column="age" property="age" />
         <result column="gender" property="gender" />
-        <association property="dept" select="com.atguigu.mybatis.mapper.DeptMapper.getEmpAndDeptByStepTwo" column="dept_id" />
+        <association property="dept" fetchType="eager" select="com.atguigu.mybatis.mapper.DeptMapper.getEmpAndDeptByStepTwo" column="dept_id" />
     </resultMap>
 
     <select id="getEmpAndDeptByEmpIdStepOne" resultMap="empAndDeptByStepResultMap">
