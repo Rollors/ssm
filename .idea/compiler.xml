@@ -10,6 +10,7 @@
         <module name="mybatis_resultMap" />
         <module name="mybatis_dynamicSQL" />
         <module name="mybatis_helloworld" />
+        <module name="mybatis_cache" />
       </profile>
     </annotationProcessing>
   </component>
