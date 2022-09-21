@@ -53,11 +53,25 @@
       <version>RELEASE</version>
       <scope>test</scope>
     </dependency>
+
+    <!-- Mybatis EHCache整合包 -->
     <dependency>
-      <groupId>org.mybatis</groupId>
-      <artifactId>mybatis</artifactId>
-      <version>3.5.7</version>
-      <scope>compile</scope>
+      <groupId>net.sf.ehcache</groupId>
+      <artifactId>ehcache-core</artifactId>
+      <version>2.6.11</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mybatis.caches</groupId>
+      <artifactId>mybatis-ehcache</artifactId>
+      <version>1.2.2</version>
+    </dependency>
+
+    <!-- slf4j日志门面的一个具体实现 -->
+    <dependency>
+      <groupId>ch.qos.logback</groupId>
+      <artifactId>logback-classic</artifactId>
+      <version>1.2.3</version>
     </dependency>
   </dependencies>
 

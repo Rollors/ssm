@@ -5,8 +5,8 @@
 
 <mapper namespace="com.atguigu.mybatis.mapper.CacheMapper">
 
+<!--    <cache type="org.mybatis.caches.ehcache.EhcacheCache" />-->
     <cache />
-
     <select id="getEmpById" resultType="Emp">
         select * from t_emp where emp_id = #{empId}
     </select>
