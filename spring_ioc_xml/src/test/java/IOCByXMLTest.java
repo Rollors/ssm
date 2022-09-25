@@ -25,8 +25,21 @@ public class IOCByXMLTest {
         // Student studentOne = ioc.getBean(Student.class);
         // Student studentOne = ioc.getBean("studentOne",Student.class);
         Person studentOne = ioc.getBean(Student.class); // 向上转型，可以
+        System.out.println(Student.class.getName());
         Person person = ioc.getBean(Person.class); // 找到Person接口的实现类，因为唯一，若是有多个实现类，则不能获取bean了
         System.out.println(studentOne);
         System.out.println(person);
+    }
+
+    @Test
+    public void testDI(){
+        // 获取IOC
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc.xml");
+        // 获取bean
+        Person studentTwo = ioc.getBean("studentTwo",Student.class); // 向上转型，可以
+        System.out.println(studentTwo);
+
+        Person studentThree = ioc.getBean("studentThree",Student.class); // 向上转型，可以
+        System.out.println(studentThree);
     }
 }

@@ -10,11 +10,19 @@ public class Student implements Person {
 
     private String gender;
 
+    private double score;
     public Student(Integer sid, String sname, Integer age, String gender) {
         this.sid = sid;
         this.sname = sname;
         this.age = age;
         this.gender = gender;
+    }
+
+    public Student(Integer sid, String sname, String gender, double score) {
+        this.sid = sid;
+        this.sname = sname;
+        this.gender = gender;
+        this.score = score;
     }
 
     public Student() {
@@ -52,6 +60,14 @@ public class Student implements Person {
         this.gender = gender;
     }
 
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
         return "Student{" +
@@ -59,6 +75,7 @@ public class Student implements Person {
                 ", sname='" + sname + '\'' +
                 ", age=" + age +
                 ", gender='" + gender + '\'' +
+                ", score=" + score +
                 '}';
     }
 }
