@@ -1,3 +1,4 @@
+import com.ldm.spring.pojo.Clazz;
 import com.ldm.spring.pojo.Person;
 import com.ldm.spring.pojo.Student;
 import org.junit.Test;
@@ -36,10 +37,16 @@ public class IOCByXMLTest {
         // 获取IOC
         ApplicationContext ioc = new ClassPathXmlApplicationContext("spring-ioc.xml");
         // 获取bean
-        Person studentTwo = ioc.getBean("studentTwo",Student.class); // 向上转型，可以
-        System.out.println(studentTwo);
+//        Person studentTwo = ioc.getBean("studentTwo",Student.class); // 向上转型，可以
+//        System.out.println(studentTwo);
 
-        Person studentThree = ioc.getBean("studentThree",Student.class); // 向上转型，可以
-        System.out.println(studentThree);
+        Person studentSix = ioc.getBean("studentSix",Student.class); // 向上转型，可以
+        System.out.println(studentSix);
+        // 报错，因为是内部bean，只能在当前bean的内部使用，不能通过ioC容器获取
+//        Clazz clazz = ioc.getBean("clazzInner", Clazz.class);
+//        System.out.println(clazz);
+
+        Clazz clazz = ioc.getBean("clazzOne",Clazz.class);
+        System.out.println(clazz);
     }
 }

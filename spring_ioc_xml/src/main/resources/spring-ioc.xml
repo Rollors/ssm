@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
 
     <bean id="studentOne" class="com.ldm.spring.pojo.Student"/>
 
@@ -36,17 +36,83 @@
         <!--<cenme>-->
         <!-- <property name="sname" value="&lt;cenme&gt;" />-->
         <property name="sname">
-            <value>
-                <![CDATA[
-                    <cenme>
-                ]]>
-            </value>
+            <value><![CDATA[<cenme>]]></value>
         </property>
         <!-- 错误    <property name="gender" value="null" />-->
         <property name="gender">
             <null />
         </property>
-        <constructor-arg value="33" name="age" />
     </bean>
+
+    <bean id="studentFive" class="com.ldm.spring.pojo.Student">
+        <property name="sid" value="1004" />
+        <property name="sname" value="menmen" />
+        <property name="age" value="26" />
+        <property name="gender" value="男" />
+        <property name="score" value="69" />
+        <!--ref:引用IOC容器中某个bean的id-->
+<!--        <property name="clazz" ref="clazzOne" />-->
+<!--        级联方式，要保证提前为clazz属性赋值或者实例化-->
+<!--        <property name="clazz" ref="clazzOne" />-->
+<!--        <property name="clazz.cid" value="2222" />-->
+<!--        <property name="clazz.cname" value="NBNB" />-->
+        <property name="clazz">
+            <bean id="clazzInner" class="com.ldm.spring.pojo.Clazz">
+                <property name="cid" value="1111" />
+                <property name="cname" value="美滋滋" />
+            </bean>
+        </property>
+        <property name="hobbies">
+            <array>
+<!--                字面量用value，类类型用ref-->
+                <value>抽烟</value>
+                <value>喝酒</value>
+                <value>烫头</value>
+            </array>
+        </property>
+        <property name="teacherMap" ref="teacherMap" />
+<!--        <property name="teacherMap">-->
+<!--            <map>-->
+<!--                <entry key="1001" value-ref="teacherOne" />-->
+<!--                <entry key="1002" value-ref="teacherTwo" />-->
+<!--            </map>-->
+<!--        </property>-->
+    </bean>
+
+    <bean id="clazzOne" class="com.ldm.spring.pojo.Clazz">
+        <property name="cid" value="1111" />
+        <property name="cname" value="美滋滋" />
+        <property name="students" ref="studentList" />
+<!--        <property name="students">-->
+<!--            <list>-->
+<!--                <ref bean="studentOne" />-->
+<!--                <ref bean="studentTwo" />-->
+<!--                <ref bean="studentThree" />-->
+<!--            </list>-->
+<!--        </property>-->
+    </bean>
+
+    <bean id="teacherOne" class="com.ldm.spring.pojo.Teacher">
+        <property name="tid" value="1001" />
+        <property name="tname" value="老张" />
+    </bean>
+
+    <bean id="teacherTwo" class="com.ldm.spring.pojo.Teacher">
+        <property name="tid" value="1002" />
+        <property name="tname" value="老李" />
+    </bean>
+<!--    配置一个集合类型的bean，需要使用util的约束-->
+    <util:list id="studentList">
+        <ref bean="studentOne" />
+        <ref bean="studentTwo" />
+        <ref bean="studentThree" />
+    </util:list>
+
+    <util:map id="teacherMap">
+        <entry key="1001" value-ref="teacherOne" />
+        <entry key="1002" value-ref="teacherTwo" />
+    </util:map>
+
+    <bean id="studentSix" class="com.ldm.spring.pojo.Student" p:sid="1005" p:sname="xaln" p:age="22" p:teacherMap-ref="teacherMap" />
 
 </beans>
