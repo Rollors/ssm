@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!--
+        scope:
+        singleton单例 获取该bean的对象是同一个
+        prototype多例 获取该bean的对象不是同一个
+    -->
+    <bean id="student" class="com.ldm.spring.pojo.Student" scope="prototype">
+        <property name="sid" value="1001" />
+        <property name="sname" value="张三" />
+    </bean>
+
+</beans>

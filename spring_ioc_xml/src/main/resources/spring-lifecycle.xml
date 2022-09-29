@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="user" class="com.ldm.spring.pojo.User" init-method="iniMethod" destroy-method="destroyMethod">
+        <property name="id" value="1" />
+        <property name="username" value="ldm" />
+        <property name="password" value="123456" />
+        <property name="age" value="23" />
+    </bean>
+
+    <bean id="myBeanPostProcessor" class="com.ldm.spring.process.MyBeanPostProcessor" />
+
+</beans>
